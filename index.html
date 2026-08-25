@@ -1,99 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  
-<script>
-  window.adobeDataLayer = window.adobeDataLayer || [];
-  adobeDataLayer.push({
-    page: { 
-      pageName: "Homepage", 
-      language: "en", 
-      pageType: "LandingPage" 
-    },
-    customer: {
-      subscriptionEndDate: "2026-09-30"
-    }
-  });
-</script>
-  <script src="https://assets.adobedtm.com/e78d80a30a77/58d19e840cbd/launch-17fc24eb3e1e-development.min.js" async></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Store | Home</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #f9f9f9; }
-    header { background-color: #222; color: #fff; padding: 20px; text-align: center; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; }
-    .welcome { padding: 30px; background: #fff; text-align: center; }
-    .product-section { padding: 20px; }
-    .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-    .product-card { border: 1px solid #ccc; background: white; padding: 10px; text-align: center; border-radius: 8px; transition: transform 0.2s; }
-    .product-card:hover { transform: scale(1.03); }
-    .product-card img { max-width: 120px; height: auto; margin-bottom: 10px; }
-    footer { background: #222; color: #fff; padding: 20px; text-align: center; margin-top: 40px; }
-    a { text-decoration: none; color: inherit; }
-    .cta-button {
-  display: inline-block;
-  background: #222;
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 5px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-  </style>
+    <meta charset="UTF-8" />
 
-  <!-- <script src="https://assets.adobedtm.com/e78d80a30a77/47da9780823f/launch-16c5cbf83423-development.min.js" async></script> -->
+    <script>
+        window.adobeDataLayer = window.adobeDataLayer || [];
+        adobeDataLayer.push({
+            page: {
+                pageName: "Homepage",
+                language: "en",
+                pageType: "LandingPage"
+            },
+            customer: {
+                subscriptionEndDate: "2026-09-30"
+            }
+        });
+    </script>
+    <script src="https://assets.adobedtm.com/e78d80a30a77/58d19e840cbd/launch-17fc24eb3e1e-development.min.js"
+        async></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Store | Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        .welcome {
+            padding: 30px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .product-section {
+            padding: 20px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #ccc;
+            background: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+        }
+
+        .product-card img {
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #222;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #222;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .login-button {
+            background: #fff;
+            color: #222;
+            border: 0;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+
+        .login-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-modal.is-open {
+            display: flex;
+        }
+
+        .login-box {
+            position: relative;
+            width: min(90%, 380px);
+            padding: 28px;
+            background: #fff;
+            border-radius: 10px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .login-box h2 {
+            margin-top: 0;
+        }
+
+        .login-box label {
+            display: block;
+            margin: 12px 0 5px;
+            font-weight: 600;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .login-submit {
+            width: 100%;
+            margin-top: 18px;
+            padding: 11px;
+            border: 0;
+            border-radius: 5px;
+            background: #222;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .login-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            border: 0;
+            background: transparent;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .login-note {
+            color: #666;
+            font-size: 13px;
+        }
+    </style>
 </head>
+
+
 <body>
+    <header>
+        <h1>🛒 My Online Store</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Contact</a>
+            <button id="loginButton" class="login-button" type="button">
+                Login
+            </button>
+        </nav>
+    </header>
 
-  <header>
-    <h1>🛒 My Online Store</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Shop</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+    <!-- login modal -->
+    <div id="loginModal" class="login-modal" aria-hidden="true">
+        <div class="login-box">
+            <button id="loginClose" class="login-close" type="button">&times;</button>
 
-  <section class="welcome">
-    <h2>Welcome to Our Store</h2>
-    <p>Browse our collection of exclusive products. Click on any item to view details.</p>
-     <a href="#productList" class="cta-button">Shop Now</a>
-      <div id="bg-mvt"></div>
+            <h2>Customer Login</h2>
+            <p class="login-note">
+                Demo customer IDs: CUST001, CUST002 or CUST003
+            </p>
 
-  </section>
+            <form id="loginForm">
+                <label for="customerId">Customer ID</label>
+                <input id="customerId" name="customerId" type="text" value="CUST001" required />
+
+                <label for="demoPassword">Password</label>
+                <input id="demoPassword" name="demoPassword" type="password" value="demo123" required />
+
+                <button class="login-submit" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <section class="welcome">
+        <h2>Welcome to Our Store</h2>
+        <p>Browse our collection of exclusive products. Click on any item to view details.</p>
+        <a href="#productList" class="cta-button">Shop Now</a>
+        <div id="bg-mvt"></div>
+
+    </section>
 
 
 
-  <section class="product-section">
-    <h2 style="text-align:center">Featured Products</h2>
-    <div class="product-list" id="productList"></div>
-  </section>
+    <section class="product-section">
+        <h2 style="text-align:center">Featured Products</h2>
+        <div class="product-list" id="productList"></div>
+    </section>
 
-  <footer>
-    &copy; 2026 My Online Store. All rights reserved.
-  </footer>
+    <footer>
+        &copy; 2026 My Online Store. All rights reserved.
+    </footer>
 
-  <script>
-   
+    <script>
 
-    fetch("https://fakestoreapi.com/products")
-      .then(res => res.json())
-      .then(data => {
-        const list = document.getElementById("productList");
-        data.slice(0, 20).forEach(product => {
-          const card = document.createElement("div");
-          card.className = "product-card";
-          card.innerHTML = `
+        const loginButton = document.getElementById("loginButton");
+        const loginModal = document.getElementById("loginModal");
+        const loginClose = document.getElementById("loginClose");
+        const loginForm = document.getElementById("loginForm");
+        const customerIdInput = document.getElementById("customerId");
+
+        function openLoginModal() {
+            loginModal.classList.add("is-open");
+            loginModal.setAttribute("aria-hidden", "false");
+        }
+
+        function closeLoginModal() {
+            loginModal.classList.remove("is-open");
+            loginModal.setAttribute("aria-hidden", "true");
+        }
+
+        loginButton.addEventListener("click", openLoginModal);
+        loginClose.addEventListener("click", closeLoginModal);
+
+        loginModal.addEventListener("click", function (event) {
+            if (event.target === loginModal) {
+                closeLoginModal();
+            }
+        });
+
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const customerId = customerIdInput.value.trim().toUpperCase();
+            const allowedCustomers = ["CUST001", "CUST002", "CUST003"];
+
+            if (!allowedCustomers.includes(customerId)) {
+                alert("Use CUST001, CUST002 or CUST003 for this demo.");
+                return;
+            }
+
+            // The Tags data element reads this value.
+            localStorage.setItem("demoCustomerId", customerId);
+
+            // Optional data-layer record for debugging.
+            window.adobeDataLayer = window.adobeDataLayer || [];
+            window.adobeDataLayer.push({
+                event: "customerLogin",
+                customer: {
+                    customerId: customerId,
+                    authenticationState: "authenticated"
+                }
+            });
+
+            // Triggers the Core Custom Event rule in Adobe Tags.
+            document.body.dispatchEvent(
+                new CustomEvent("demoCustomerLogin", {
+                    bubbles: true,
+                    detail: {
+                        customerId: customerId
+                    }
+                })
+            );
+
+            loginButton.textContent = "Logged in: " + customerId;
+            closeLoginModal();
+        });
+
+        // fetching products for recommendations activity
+        fetch("https://fakestoreapi.com/products")
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById("productList");
+                data.slice(0, 20).forEach(product => {
+                    const card = document.createElement("div");
+                    card.className = "product-card";
+                    card.innerHTML = `
             <a href="product.html?id=${product.id}">
               <img src="${product.image}" alt="${product.title}" />
               <p><strong>${product.title}</strong></p>
             </a>
           `;
-          list.appendChild(card);
-        });
-      });
-  </script>
+                    list.appendChild(card);
+                });
+            });
+    </script>
 
 </body>
+
 </html>
