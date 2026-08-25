@@ -38,21 +38,27 @@
         `;
 
         // Push product data to adobeDataLayer
-        adobeDataLayer.push({
-          event: "prodView",
-          page: {
-            pageName: "Product Detail Page",
-            language: "en",
-            pageType: "ProductPage"
-          },
-          product: {
-            productID: product.id.toString(),
-            productName: product.title,
-            productURL: window.location.href,
-            productImageURL: product.image,
-            productCaption: product.description
-          }
-        });
+  adobeDataLayer.push({
+  event: "prodView",
+
+  page: {
+    pageName: "Product Detail Page",
+    language: "en",
+    pageType: "ProductPage"
+  },
+
+  customer: {
+    subscriptionEndDate: "2026-09-30"
+  },
+
+  product: {
+    productID: product.id.toString(),
+    productName: product.title,
+    productURL: window.location.href,
+    productImageURL: product.image,
+    productCaption: product.description
+  }
+});
 
         // Lunch SDK after data pushed
         const launchScript = document.createElement("script");
