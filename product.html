@@ -24,6 +24,27 @@
     const params = new URLSearchParams(window.location.search);
     const productId = params.get("id");
 
+    /**
+ * UC7: Classify each Fake Store product for gender-based
+ * Adobe Target Recommendations.
+ */
+function getUc7ProductGender(category) {
+  const normalizedCategory =
+    String(category || "").toLowerCase();
+
+  if (normalizedCategory === "men's clothing") {
+    return "male";
+  }
+
+  if (normalizedCategory === "women's clothing") {
+    return "female";
+  }
+
+  // Jewellery and electronics are used as generic/unisex products.
+  return "unisex";
+}
+    //uc7 ends here---
+    
     fetch(`https://fakestoreapi.com/products/${productId}`)
       .then(res => res.json())
       .then(product => {
@@ -57,6 +78,10 @@
     productURL: window.location.href,
     productImageURL: product.image,
     productCaption: product.description
+
+    // UC7 only: These fields are isolated from other activities.
+  uc7ProductCategory: product.category,
+  uc7ProductGender: getUc7ProductGender(product.category)
   }
 });
 
