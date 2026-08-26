@@ -179,6 +179,12 @@
             color: #666;
             font-size: 13px;
         }
+
+        /* UC7: A minimal height makes the empty Target placement
+   selectable inside the Visual Experience Composer. */
+     #uc7-recommendations-slot {
+       min-height: 2px;
+   }
     </style>
 </head>
 
@@ -225,8 +231,14 @@
         <p>Browse our collection of exclusive products. Click on any item to view details.</p>
         <a href="#productList" class="cta-button">Shop Now</a>
         <div id="bg-mvt"></div>
-
     </section>
+
+    <!-- UC7: Dedicated placement for gender-based recommendations.
+     Other Target activities should not modify this container. -->
+<div
+  id="uc7-recommendations-slot"
+  aria-live="polite"
+></div>
 
 
 
