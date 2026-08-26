@@ -280,6 +280,27 @@
             // The Tags data element reads this value.
             localStorage.setItem("demoCustomerId", customerId);
 
+// UC7: Map each demo customer to a recommendation gender.--starts here
+// This mapping is used only by the gender-based Recommendations
+const uc7GenderByCustomer = {
+  CUST001: "male",
+  CUST002: "female",
+  CUST003: "unisex"
+};
+
+// Use "unisex" as the safe fallback if the customer ID does not have a known gender mapping.
+const uc7RecommendationGender =
+  uc7GenderByCustomer[customerId] || "unisex";
+
+// Store the normalized value so an Adobe Tags data element can
+// read it and send it to Target as a separate profile attribute.
+localStorage.setItem(
+  "uc7RecommendationGender",
+  uc7RecommendationGender
+);
+//ends here
+
+            
             // Optional data-layer record for debugging.
             window.adobeDataLayer = window.adobeDataLayer || [];
             window.adobeDataLayer.push({
