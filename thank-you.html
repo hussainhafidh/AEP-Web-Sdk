@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Order Confirmed</title>
+
+  <!-- Initialize adobeDataLayer before Adobe Tags -->
+  <script>
+    window.adobeDataLayer =
+      window.adobeDataLayer || [];
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    .thank-you-container {
+      max-width: 650px;
+      margin: 80px auto;
+      padding: 40px 20px;
+      background: #ffffff;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .success-icon {
+      font-size: 60px;
+      color: #2e7d32;
+      margin-bottom: 15px;
+    }
+
+    .thank-you-title {
+      margin: 0 0 15px;
+      color: #2e7d32;
+    }
+
+    .thank-you-message {
+      margin-bottom: 10px;
+      color: #333333;
+      line-height: 1.5;
+    }
+
+    .product-information {
+      margin: 20px 0;
+      padding: 12px;
+      background: #f1f8e9;
+      border-radius: 4px;
+    }
+
+    .continue-shopping {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 24px;
+      background: #2e7d32;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="thank-you-container">
+    <div class="success-icon">✓</div>
+
+    <h1 class="thank-you-title">
+      Thank You for Your Purchase!
+    </h1>
+
+    <p class="thank-you-message">
+      Your order has been successfully completed.
+    </p>
+
+    <p class="thank-you-message">
+      Your promotional offer has been applied.
+    </p>
+
+    <div
+      class="product-information"
+      id="purchasedProductInformation"
+    ></div>
+
+    <a
+      class="continue-shopping"
+      href="index.html"
+    >
+      Continue Shopping
+    </a>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(
+      window.location.search
+    );
+
+    const purchasedProductId =
+      params.get("productId") || "";
+
+    const productInformation =
+      document.getElementById(
+        "purchasedProductInformation"
+      );
+
+    if (purchasedProductId) {
+      productInformation.textContent =
+        "Purchased Product ID: " +
+        purchasedProductId;
+    } else {
+      productInformation.textContent =
+        "Purchase successfully completed.";
+    }
+
+    /*
+     * Push conversion information before loading
+     * Adobe Tags.
+     */
+    adobeDataLayer.push({
+      event: "purchaseComplete",
+
+      page: {
+        pageName: "Order Confirmation Page",
+        language: "en",
+        pageType: "ThankYouPage"
+      },
+
+      purchase: {
+        productID: purchasedProductId,
+        purchaseStatus: "completed"
+      }
+    });
+
+
+    const launchScript =
+      document.createElement("script");
+
+    launchScript.src =
+      "https://assets.adobedtm.com/e78d80a30a77/58d19e840cbd/launch-17fc24eb3e1e-development.min.js";
+
+    launchScript.async = true;
+
+    document.body.appendChild(launchScript);
+  </script>
+</body>
+</html>
